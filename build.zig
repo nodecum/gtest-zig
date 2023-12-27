@@ -73,13 +73,20 @@ pub fn build(b: *std.Build) void {
 
     // install the header, we have a LazyPath,
     // thus can not use installHeader
-    const install_gtest_header = b.addInstallFileWithDir(
-        gtest_dep.path(
-            b.pathJoin(&.{ "googletest", "include", "gtest", "gtest.h" }),
-        ),
-        .header,
-        b.pathJoin(&.{ "gtest", "gtest.h" }),
+    // const install_gtest_header = b.addInstallFileWithDir(
+    //     gtest_dep.path(
+    //         b.pathJoin(&.{ "googletest", "include", "gtest", "gtest.h" }),
+    //     ),
+    //     .header,
+    //     b.pathJoin(&.{ "gtest", "gtest.h" }),
+    // );
+    // b.getInstallStep().dependOn(&install_gtest_header.step);
+    // gtest_lib.installed_headers.append(&install_gtest_header.step) catch @panic("OOM");
+    gtest_lib.installHeadersDirectoryOptions(
+        .{
+            .source_dir = gtest_dep.path(b.pathJoin(&.{ "googletest", "include", "gtest" })),
+            .install_dir = .header,
+            .install_subdir = b.pathJoin(&.{ "googletest", "include", "gtest" }),
+        },
     );
-    b.getInstallStep().dependOn(&install_gtest_header.step);
-    gtest_lib.installed_headers.append(&install_gtest_header.step) catch @panic("OOM");
 }
