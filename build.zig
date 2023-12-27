@@ -86,7 +86,7 @@ pub fn build(b: *std.Build) void {
         .{
             .source_dir = gtest_dep.path(b.pathJoin(&.{ "googletest", "include", "gtest" })),
             .install_dir = .header,
-            .install_subdir = b.pathJoin(&.{ "googletest", "include", "gtest" }),
+            .install_subdir = "gtest",
         },
     );
 }
