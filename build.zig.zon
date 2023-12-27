@@ -1,0 +1,11 @@
+.{
+    .name = "gtest-zig",
+    .version = "0.12.0",
+    .paths = .{""},
+    .dependencies = .{
+        .gtest = .{
+            .url = "https://github.com/google/googletest/archive/v1.14.0.tar.gz",
+            .hash = "1220f76996fe071a0380b8b9d10b5ebade8dbc6a53d6ab281b3c97e7e20fd75e3b79",
+        },
+    },
+}
