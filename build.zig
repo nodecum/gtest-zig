@@ -81,4 +81,5 @@ pub fn build(b: *std.Build) void {
         b.pathJoin(&.{ "gtest", "gtest.h" }),
     );
     b.getInstallStep().dependOn(&install_gtest_header.step);
+    gtest_lib.installed_headers.append(&install_gtest_header.step) catch @panic("OOM");
 }
