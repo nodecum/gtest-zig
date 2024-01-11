@@ -96,6 +96,7 @@ pub fn build(b: *std.Build) void {
     gmock_lib.addIncludePath(gmock_root_dir);
     gmock_lib.addIncludePath(gtest_include_dir);
     gmock_lib.addIncludePath(gmock_include_dir);
+    gmock_lib.linkLibrary(gtest_lib);
     b.installArtifact(gmock_lib);
     // we export gmock-all.cc as lib
     const gmock_all_lib = b.addStaticLibrary(
